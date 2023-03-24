@@ -1,6 +1,10 @@
+/**
+ * add event listener for submit button
+ */
 
-document.getElementById("test").addEventListener("click", myFunction);
+const submitButton = document.getElementById("submit-button");
+submitButton.addEventListener("click", generateMeme)
 
-function myFunction() {
-  document.getElementById("test").innerHTML = "YOU CLICKED ME!";
+function generateMeme() {
+  console.log('hello')
 }
