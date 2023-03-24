@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,8 +9,36 @@
   <script src="scripts.js" defer></script>
   <title>Document</title>
 </head>
+
 <body>
-  <h1>Hello World!</h1>
-  <button id="test">Test!</button>
+  <div class="meme-entry">
+    <h1>Meme Generator</h1>
+    <h2>Fill out the form to create the meme of your dreams!</h2>
+    <form action="#" class="meme-entry-form">
+      <div class="form-field">
+        <label for="image-url">Image URL:</label>
+        <input type="url" id="image-url" name="image-url">
+      </div>
+
+      <div class="form-field">
+        <label for="top-text">Top Text:</label>
+        <input type="text" id="top-text" name="top-text">
+      </div>
+
+      <div class="form-field">
+        <label for="bottom-text">Bottom Text:</label>
+        <input type="text" id="bottom-text" name="bottom-text">
+      </div>
+<!-- TODO:Figure out how to center this button -->
+      <div class="submit-button">
+        <button>Submit Meme</button>
+      </div>
+
+    </form>
+
+<!-- TODO:ad spacing below the form div-->
+  </div>
+
 </body>
+
 </html>

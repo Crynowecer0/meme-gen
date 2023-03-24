@@ -1,3 +1,48 @@
-h1 {
-  color: red;
+/* minimalist css reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+/* Styling */
+.meme-entry {
+  background-color: cornflowerblue;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+h1 {
+  padding-top: 40px;
+  font-size: 72px;
+}
+
+h2 {
+  font-size: 20px;
+  padding-bottom: 40px;
+}
+
+form.meme-entry-form {
+  display: table;
+  margin: 0 auto;
+}
+
+div.form-field {
+  display: table-row;
+}
+
+label,
+input {
+  display: table-cell;
+  margin-bottom: 10px;
+}
+
+label {
+  padding-right: 10px;
+}
+
+
+
+
