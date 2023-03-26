@@ -27,6 +27,7 @@ h2 {
 form.meme-entry-form {
   display: table;
   margin: 0 auto;
+  text-align: center;
 }
 
 div.form-field {
@@ -39,10 +40,11 @@ input {
   margin-bottom: 10px;
 }
 
-label {
-  padding-right: 10px;
+input {
+  width: 100%;
 }
 
-
-
+.meme-entry-form {
+  width: 60%;
+}
 

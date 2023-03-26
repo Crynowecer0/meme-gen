@@ -14,7 +14,7 @@
   <div class="meme-entry">
     <h1>Meme Generator</h1>
     <h2>Fill out the form to create the meme of your dreams!</h2>
-    <form action="#" class="meme-entry-form">
+    <form action="#" class="meme-entry-form" id="meme-entry-form">
       <div class="form-field">
         <label for="image-url">Image URL:</label>
         <input type="url" id="image-url" name="image-url">
@@ -29,17 +29,22 @@
         <label for="bottom-text">Bottom Text:</label>
         <input type="text" id="bottom-text" name="bottom-text">
       </div>
-<!-- TODO:Figure out how to center this button -->
-      <div id="submit-button">
-        <button>Submit Meme</button>
+      <!-- TODO:Figure out how to center this button -->
+
+      <div class="button-container">
+        <input type="submit" id="submit-button"/>
       </div>
+
+      <!-- <div id="submit-button">
+        <button>Submit Meme</button>
+      </div> -->
       <div id="meme-container">
 
       </div>
 
     </form>
 
-<!-- TODO:ad spacing below the form div-->
+    <!-- TODO:ad spacing below the form div-->
   </div>
 
 </body>

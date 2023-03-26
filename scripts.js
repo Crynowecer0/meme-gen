@@ -1,10 +1,10 @@
-/**
- * add event listener for submit button
- */
 
-const submitButton = document.getElementById("submit-button");
-submitButton.addEventListener("click", generateMeme)
+
+const form = document.getElementById("meme-entry-form");
+form.addEventListener("submit", generateMeme);
+// submitButton.addEventListener("click", generateMeme);
 
 function generateMeme() {
-  console.log('hello')
+  console.log("hello");
+  event.preventDefault();
 }
