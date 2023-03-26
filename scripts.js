@@ -11,8 +11,11 @@ function generateMeme() {
   const backgroundImg = 'https://www.ultimate-leadership-training.co.uk/images/xshit_down.jpg.pagespeed.ic.fO-EV_o3OU.webp'
 
   //generate a blank dom element -> seperate function most likely
-  const newMeme = document.createElement("img");
-  newMeme.src = backgroundImg;
+  const newMeme = document.createElement("div");
+  const memeImg = document.createElement('Img')
+  memeImg.src = backgroundImg;
+  newMeme.appendChild(memeImg)
+
   const memeContent = document.createTextNode('hello world!')
   newMeme.appendChild(memeContent)
   newMeme.classList.add('meme')
