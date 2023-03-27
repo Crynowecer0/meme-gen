@@ -1,14 +1,16 @@
 const form = document.getElementById("meme-entry-form");
 form.addEventListener("submit", generateMeme);
 // submitButton.addEventListener("click", generateMeme);
+let allMemes = document.getElementById("meme-container");
+
+allMemes = localStorage.getItem('listOfMemes', allMemes);
+console.log()
 
 function generateMeme() {
   //access the data in the form fields
   const form = document.getElementById("meme-entry-form");
   const submitter = document.getElementById("submit-button");
   const formData = new FormData(form, submitter);
-
-  console.log(formData.get("image-url"));
 
   const backgroundImg = formData.get("image-url");
 
@@ -37,11 +39,10 @@ function generateMeme() {
   hoverTextWrapper.classList.add("delete-image-wrapper");
   const hoverText = document.createElement("p");
   hoverText.classList.add("delete-image-text");
-  hoverText.appendChild(document.createTextNode('Click to delete the meme'))
+  hoverText.appendChild(document.createTextNode("Click to delete the meme"));
   hoverTextWrapper.appendChild(hoverText);
 
-  newMeme.appendChild(hoverTextWrapper)
-
+  newMeme.appendChild(hoverTextWrapper);
 
   //append the topTop Text to the meme
   newMeme.appendChild(topText);
@@ -57,13 +58,8 @@ function generateMeme() {
   const memeContainer = document.getElementById("meme-container");
   memeContainer.appendChild(newMeme);
 
+  //reset the form
+  form.reset();
+  //prevent defautl
   event.preventDefault();
 }
-
-// function addClass(element) {
-
-// }
-
-// function deleteMeme(e) {
-//   console.log(e)
-// }

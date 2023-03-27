@@ -49,9 +49,10 @@ input {
 }
 
 #meme-container {
-  /* display: flex;
+  display: flex;
   flex-direction: row;
-  flex-wrap: wrap; */
+  flex-wrap: wrap;
+  justify-content: space-around;
   width: 100vw;
   height: 100vh;
 }
@@ -59,13 +60,13 @@ input {
 .meme {
   max-height: 500px;
   max-width: 500px;
-  background-color: aliceblue;
   position: relative;
   text-align: center;
   /* border: 1px solid red; */
   overflow: hidden;
   border-radius: 15px;
   margin: 10px;
+  flex-grow: 1;
 }
 
 .meme > img {
