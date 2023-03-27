@@ -3,19 +3,29 @@ form.addEventListener("submit", generateMeme);
 // submitButton.addEventListener("click", generateMeme);
 let allMemes = document.getElementById("meme-container");
 
+for (var i = 0; i < localStorage.length; i++) {
+  let storedMemeString = localStorage.getItem(localStorage.key(i));
+  let node = document.createElement('html');
+  allMemes.insertAdjacentHTML("afterbegin", storedMemeString);
+}
 
-console.log(localStorage)
+//loop over memes created from storage and add appropriate event listener
+const elements = document.getElementsByClassName("meme");
+for (var i = 0; i < elements.length; i++) {
+  elements[i].addEventListener("click", deleteMeme, false);
+}
 
-function generateMeme() {
+function generateMeme(e) {
   //access the data in the form fields
   const form = document.getElementById("meme-entry-form");
   const submitter = document.getElementById("submit-button");
   const formData = new FormData(form, submitter);
-
+  const timeStamp = new Date();
   const backgroundImg = formData.get("image-url");
 
   //generate a blank dom element -> seperate function most likely
   const newMeme = document.createElement("div");
+  newMeme.localStorageKey = timeStamp;
   const memeImg = document.createElement("Img");
   memeImg.src = backgroundImg;
   newMeme.appendChild(memeImg);
@@ -51,15 +61,44 @@ function generateMeme() {
   const memeContent = document.createTextNode("hello world!");
 
   //code to delete a meme when clicked on
-  newMeme.setAttribute("onclick", "this.remove()");
+  //TODO: working version
+  // newMeme.setAttribute("onclick", "this.remove()");
+  //FIXME: experimental version
+  newMeme.addEventListener("click", deleteMeme);
 
   newMeme.classList.add("meme");
   //add the new meme to the dom
   const memeContainer = document.getElementById("meme-container");
   memeContainer.appendChild(newMeme);
 
+  storeMeme(newMeme);
   //reset the form
   form.reset();
   //prevent defautl
   event.preventDefault();
+}
+
+//function to delete a meme and remove it from local storage
+//TODO: WORK IN PROGRESS
+function deleteMeme(e) {
+  console.log("you tried to delete");
+  console.log(e.currentTarget);
+  e.currentTarget.remove();
+}
+
+//function to store created memes in local storage
+//this function needs to store each meme element as a key : value pair within
+//the local storage array that we defined earlier
+function storeMeme(meme) {
+  //use localStorageKey
+
+  const key = meme.localStorageKey;
+  const value = meme.outerHTML;
+
+  localStorage.setItem(key, value);
+  console.log(localStorage);
+  // const storageArray = JSON.parse(localStorage.getItem("memes"));
+  // storageArray.push(meme);
+  // localStorage.setItem("memes", JSON.stringify(storageArray));
+  // console.log(storageArray);
 }
