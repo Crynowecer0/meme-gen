@@ -8,24 +8,62 @@ function generateMeme() {
   const submitter = document.getElementById("submit-button");
   const formData = new FormData(form, submitter);
 
-  const backgroundImg = 'https://www.ultimate-leadership-training.co.uk/images/xshit_down.jpg.pagespeed.ic.fO-EV_o3OU.webp'
+  console.log(formData.get("image-url"));
+
+  const backgroundImg = formData.get("image-url");
 
   //generate a blank dom element -> seperate function most likely
   const newMeme = document.createElement("div");
-  const memeImg = document.createElement('Img')
+  const memeImg = document.createElement("Img");
   memeImg.src = backgroundImg;
-  newMeme.appendChild(memeImg)
+  newMeme.appendChild(memeImg);
 
-  const memeContent = document.createTextNode('hello world!')
-  newMeme.appendChild(memeContent)
-  newMeme.classList.add('meme')
+  //create the div to hold the top text and add text to it
+  const topText = document.createElement("div");
+  topText.classList.add("top-text");
+  const topTextContent = document.createTextNode(formData.get("top-text"));
+  topText.appendChild(topTextContent);
+
+  //create the div to hold the bottom text and text to it
+  const bottomText = document.createElement("div");
+  bottomText.classList.add("bottom-text");
+  const bottomTextContent = document.createTextNode(
+    formData.get("bottom-text")
+  );
+  bottomText.appendChild(bottomTextContent);
+
+  //add the hover-only text and element
+  const hoverTextWrapper = document.createElement("div");
+  hoverTextWrapper.classList.add("delete-image-wrapper");
+  const hoverText = document.createElement("p");
+  hoverText.classList.add("delete-image-text");
+  hoverText.appendChild(document.createTextNode('Click to delete the meme'))
+  hoverTextWrapper.appendChild(hoverText);
+
+  newMeme.appendChild(hoverTextWrapper)
+
+
+  //append the topTop Text to the meme
+  newMeme.appendChild(topText);
+  //append the bottom text to the meme
+  newMeme.appendChild(bottomText);
+  const memeContent = document.createTextNode("hello world!");
+
+  //code to delete a meme when clicked on
+  newMeme.setAttribute("onclick", "this.remove()");
+
+  newMeme.classList.add("meme");
   //add the new meme to the dom
-  const memeContainer = document.getElementById('meme-container')
-  memeContainer.appendChild(newMeme)
-
-  //append the data from the form fields to the appropriate places
-  //on the generated dom element
-  //append the generated element to the dom
+  const memeContainer = document.getElementById("meme-container");
+  memeContainer.appendChild(newMeme);
 
   event.preventDefault();
 }
+
+// function addClass(element) {
+
+// }
+
+// function deleteMeme(e) {
+//   console.log(e)
+// }

@@ -48,20 +48,81 @@ input {
   width: 60%;
 }
 
-
-.meme {
-  min-height: 250px;
-  min-width: 250px;
-  background-color:aliceblue;
-  margin: 5px;
-}
-
 #meme-container {
   /* display: flex;
   flex-direction: row;
   flex-wrap: wrap; */
   width: 100vw;
+  height: 100vh;
+}
+
+.meme {
+  max-height: 500px;
+  max-width: 500px;
+  background-color: aliceblue;
+  position: relative;
+  text-align: center;
+  /* border: 1px solid red; */
+  overflow: hidden;
+  border-radius: 15px;
+  margin: 10px;
+}
+
+.meme > img {
   height: 100%;
-  background-color: blue;
+  width: 100%;
+  object-fit: cover;
+}
+
+.top-text {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  font-size: 32px;
+  font-weight: 900;
+}
+
+.bottom-text {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  font-size: 32px;
+  font-weight: 900;
+}
+
+.delete-image-wrapper {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* transition effect. not necessary */
+  transition: opacity .2s, visibility .2s;
+}
+
+.meme:hover .delete-image-wrapper {
+  visibility: visible;
+  opacity: 1;
+}
+
+.delete-image-text {
+  transition: .2s;
+  transform: translateY(1em);
+}
+
+.meme:hover .delete-image-text {
+  transform: translateY(0);
 }
 
