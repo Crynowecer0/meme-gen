@@ -3,8 +3,8 @@ form.addEventListener("submit", generateMeme);
 // submitButton.addEventListener("click", generateMeme);
 let allMemes = document.getElementById("meme-container");
 
-allMemes = localStorage.getItem('listOfMemes', allMemes);
-console.log()
+
+console.log(localStorage)
 
 function generateMeme() {
   //access the data in the form fields
