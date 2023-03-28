@@ -3,9 +3,12 @@ form.addEventListener("submit", generateMeme);
 // submitButton.addEventListener("click", generateMeme);
 let allMemes = document.getElementById("meme-container");
 
+// localStorage.clear();
+
+console.log(localStorage.length);
 for (var i = 0; i < localStorage.length; i++) {
   let storedMemeString = localStorage.getItem(localStorage.key(i));
-  let node = document.createElement('html');
+  let node = document.createElement("html");
   allMemes.insertAdjacentHTML("afterbegin", storedMemeString);
 }
 
@@ -25,6 +28,7 @@ function generateMeme(e) {
 
   //generate a blank dom element -> seperate function most likely
   const newMeme = document.createElement("div");
+  newMeme.setAttribute("id", `meme#${localStorage.length}`);
   newMeme.localStorageKey = timeStamp;
   const memeImg = document.createElement("Img");
   memeImg.src = backgroundImg;
@@ -81,8 +85,7 @@ function generateMeme(e) {
 //function to delete a meme and remove it from local storage
 //TODO: WORK IN PROGRESS
 function deleteMeme(e) {
-  console.log("you tried to delete");
-  console.log(e.currentTarget);
+localStorage.removeItem(e.currentTarget.id)
   e.currentTarget.remove();
 }
 
@@ -90,9 +93,7 @@ function deleteMeme(e) {
 //this function needs to store each meme element as a key : value pair within
 //the local storage array that we defined earlier
 function storeMeme(meme) {
-  //use localStorageKey
-
-  const key = meme.localStorageKey;
+  const key = meme.id;
   const value = meme.outerHTML;
 
   localStorage.setItem(key, value);
