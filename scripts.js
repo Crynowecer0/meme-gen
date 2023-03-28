@@ -1,35 +1,33 @@
+/* define global dom node constants */
 const form = document.getElementById("meme-entry-form");
-form.addEventListener("submit", generateMeme);
-// submitButton.addEventListener("click", generateMeme);
-let allMemes = document.getElementById("meme-container");
+const allMemes = document.getElementById("meme-container");
+const submitter = document.getElementById("submit-button");
 
-// localStorage.clear();
-
-console.log(localStorage.length);
+/* On load/refresh, access localStorage and append all saved memes to the DOM */
 for (var i = 0; i < localStorage.length; i++) {
   let storedMemeString = localStorage.getItem(localStorage.key(i));
   let node = document.createElement("html");
   allMemes.insertAdjacentHTML("afterbegin", storedMemeString);
 }
 
-//loop over memes created from storage and add appropriate event listener
+/* After appending saved memes to DOM, mount deleteMeme function on each meme */
 const elements = document.getElementsByClassName("meme");
 for (var i = 0; i < elements.length; i++) {
   elements[i].addEventListener("click", deleteMeme, false);
 }
 
-function generateMeme(e) {
-  //access the data in the form fields
-  const form = document.getElementById("meme-entry-form");
-  const submitter = document.getElementById("submit-button");
+/* add global event listeners */
+form.addEventListener("submit", generateMeme);
+
+/* this function generates a new meme from the current form data,
+saves the meme to local storage, and then clears the submit form */
+function generateMeme(event) {
   const formData = new FormData(form, submitter);
-  const timeStamp = new Date();
   const backgroundImg = formData.get("image-url");
 
   //generate a blank dom element -> seperate function most likely
   const newMeme = document.createElement("div");
   newMeme.setAttribute("id", `meme#${localStorage.length}`);
-  newMeme.localStorageKey = timeStamp;
   const memeImg = document.createElement("Img");
   memeImg.src = backgroundImg;
   newMeme.appendChild(memeImg);
@@ -58,48 +56,35 @@ function generateMeme(e) {
 
   newMeme.appendChild(hoverTextWrapper);
 
-  //append the topTop Text to the meme
+  //append the Top Text to the meme
   newMeme.appendChild(topText);
   //append the bottom text to the meme
   newMeme.appendChild(bottomText);
-  const memeContent = document.createTextNode("hello world!");
 
-  //code to delete a meme when clicked on
-  //TODO: working version
-  // newMeme.setAttribute("onclick", "this.remove()");
-  //FIXME: experimental version
   newMeme.addEventListener("click", deleteMeme);
 
   newMeme.classList.add("meme");
-  //add the new meme to the dom
-  const memeContainer = document.getElementById("meme-container");
-  memeContainer.appendChild(newMeme);
 
+  //store the newly created meme in local storage
   storeMeme(newMeme);
-  //reset the form
+  allMemes.appendChild(newMeme);
+
   form.reset();
-  //prevent defautl
   event.preventDefault();
 }
 
-//function to delete a meme and remove it from local storage
-//TODO: WORK IN PROGRESS
+/* helper function that deletes a clicked on meme from the page and removes
+the same meme from localstorage */
 function deleteMeme(e) {
-localStorage.removeItem(e.currentTarget.id)
+  localStorage.removeItem(e.currentTarget.id);
   e.currentTarget.remove();
 }
 
-//function to store created memes in local storage
-//this function needs to store each meme element as a key : value pair within
-//the local storage array that we defined earlier
+/* helper function called by the generateMeme function - adds
+the newly created meme to localStorage */
 function storeMeme(meme) {
   const key = meme.id;
   const value = meme.outerHTML;
 
   localStorage.setItem(key, value);
-  console.log(localStorage);
-  // const storageArray = JSON.parse(localStorage.getItem("memes"));
-  // storageArray.push(meme);
-  // localStorage.setItem("memes", JSON.stringify(storageArray));
-  // console.log(storageArray);
 }
